@@ -15,105 +15,180 @@ from javax.swing import JScrollPane;
 from javax.swing import JPanel;
 from javax.swing import JLabel;
 from javax.swing import JTextArea;
+from javax.swing import JTextField;
+import urllib2
+import json
+
+
+
 
 class BurpExtender(IBurpExtender, ITab, IMessageEditorController):
 
     def registerExtenderCallbacks(self, callbacks):
         self.callbacks = callbacks
-        self.callbacks.setExtensionName("Payload Paster")
+        self.callbacks.setExtensionName("Burp Payload, Username & Password Repository")
         self.callbacks.printOutput("Welcome to my first Burp Extension. Please enjoy!")
+        x = urllib2.urlopen('https://raw.githubusercontent.com/beb-commits/Project-Files/main/18000-common-usernames.txt')
+        y = urllib2.urlopen('https://raw.githubusercontent.com/beb-commits/Project-Files/main/top-1575-probable-passwords.txt')
         
-        
-        frame = JFrame("Payload Paster")
-        frame.setSize(500, 900)
+        frame = JFrame("Burp Payload, Username & Password Repository")
+        frame.setSize(400, 900)
         frame.setLayout(BorderLayout())
         
+    #UNUSED FUNCTIONS AND BUTTONS RELATING TO FUNCTIONS:
         
-        #Buttons and button panels
-        b = JButton("Copy")
-        bPanel = JPanel()
-        bPanel.setLayout(FlowLayout(FlowLayout.CENTER))
-        bPanel.add(b)
-        b2 = JButton("Copy")
-        bPanel2 = JPanel()
-        bPanel2.setLayout(FlowLayout(FlowLayout.CENTER))
-        bPanel2.add(b2)
-        b3 = JButton("Copy")
-        bPanel3 = JPanel()
-        bPanel3.setLayout(FlowLayout(FlowLayout.CENTER))
-        bPanel3.add(b3)
-        b4 = JButton("Copy")
-        bPanel4 = JPanel()
-        bPanel4.setLayout(FlowLayout(FlowLayout.CENTER))
-        bPanel4.add(b4)
+        # def request_usernames(event):
+         # userreqFrame = JFrame("How many usernames would you like to retrieve?")
+         # userreqPanel = JPanel()
+         # userreqPanel.setLayout(BorderLayout())
+         # userreqFrame.setSize(400, 400)
+         # userreqFrame.setLayout(BorderLayout())
+         # userreqPanel.setLayout(BorderLayout())
+         # self.userfield = JTextField('Type the number here',15)
+         # userreqPanel.add(self.userfield, BorderLayout.NORTH)
+         # retUsenames = JButton('Get Usernames', actionPerformed=display_usernames)
+         # userreqPanel.add(retUsenames, BorderLayout.SOUTH)
+         # userreqFrame.add(userreqPanel)
+         # userreqFrame.setVisible(True)
+         # return
+        
+        # def display_usernames(event):
+         # userdisFrame = JFrame("Results")
+         # userdisPanel = JPanel()
+         # userdisPanel.setLayout(BorderLayout())
+         # userdisFrame.add(userdisPanel)
+         # userdisArea = JTextArea
+         # u = int(self.userfield.getText())
+         # self.callbacks.printOutput(self.userfield.getText())
+         # userdisArea.append(x.read()[u])
+         # userdisPanel.add(userfield)
+         # userdisFrame.setVisible(True)
+         # return
+    
+        # def request_passwords(event):
+         # passreqFrame = JFrame('How many passwords would you like to retrieve?')
+         # passreqPanel = JPanel()
+         # passreqPanel.setLayout(BorderLayout())
+         # passreqFrame.add(passreqPanel, BorderLayout.NORTH)
+         # self.passfield = JTextField('Type the number here',15)
+         # passreqPanel.add(passfield, BorderLayout.NORTH)
+         # retPasswords = JButton('Get Passwords', actionPerformed=display_passwords)
+         # passreqPanel.add(retPasswords, BorderLayout.SOUTH)
+         # passreqFrame.setVisible(True)
+         # return
    
-       #Tabbed pane for different payloads
-        tabPane = JTabbedPane(JTabbedPane.TOP)
+        # def display_passwords(event):
+         # passdisFrame = JFrame('Results')
+         # passdisPanel = JPanel
+         # passdisPanel.setLayout(BorderLayout())
+         # passdisFrame.add(passdisPanel)
+         # passdisArea = JTextArea
+         # p = int(self.passfield.getText())
+         # passdisArea.append(x.read()[p])
+         # passdisPanel.add(passfield)
+         # passdisFrame.setVisible(True)
+         # return
         
-        #scrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS)
+     # bxss = JButton("Copy")
+     # bxssreq = JButton("Request Payloads")
+     # bxssPanel = JPanel()
+     # bxssPanel.setLayout(FlowLayout(FlowLayout.CENTER))
+     # bxssPanel.add(bxssreq)
+     # bxssPanel.add(bxss)
+     # bsql = JButton("Copy")
+     # bsqlreq = JButton("Request Payloads")
+     # bsqlPanel = JPanel()
+     # bsqlPanel.setLayout(FlowLayout(FlowLayout.CENTER))
+     # bsqlPanel.add(bsqlreq)
+     # bsqlPanel.add(bsql)
+     # b2 = JButton("Copy")
+     # by = JButton('Request Usernames', actionPerformed=request_usernames)
+     # bPanel2 = JPanel()
+     # bPanel2.setLayout(FlowLayout(FlowLayout.CENTER))
+     # bPanel2.add(by)
+     # bPanel2.add(b2)
+     # b3 = JButton("Copy")
+     # bz = JButton('Request Passwords', actionPerformed=request_passwords)
+     # bPanel3 = JPanel()
+     # bPanel3.setLayout(FlowLayout(FlowLayout.CENTER))
+     # bPanel3.add(bz)
+     # bPanel3.add(b3)
+   
+       #TABBED PANES:
+     
+        tabPane = JTabbedPane(JTabbedPane.TOP)
+        tabPane2 = JTabbedPane(JTabbedPane.TOP)
+        
+     # scrollPane.setVerticalScrollBarPolicy(VERTICAL_SCROLLBAR_ALWAYS)
    
    #FIRST TAB
 
-        textArea = JTextArea(60, 60)
-        textArea.append("This is a test This is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testis a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a testThis is a test")
         textPanel = JPanel()
         textPanel.setLayout(BorderLayout())
-        scrollPane = JScrollPane(textArea)
-        textPanel.add(scrollPane, BorderLayout.NORTH)
-        textPanel.add(bPanel, BorderLayout.SOUTH)
-        #textPanel.add(bPanel)
-        #textPanel.add(textArea)
-        #panel1 = JPanel()
-        #panel1.setLayout(BorderLayout())
-        #scrollPane = JScrollPane(textPanel)
-        #panel1.add(textArea)
-        #panel1.add(bPanel, BorderLayout.SOUTH)
-        #scrollPane.add(panel1)
-        tabPane.addTab("XSS", textPanel)
-   
+        textPanel.add(tabPane2, BorderLayout.NORTH)
+        tabPane.addTab("Payloads", textPanel)
+        
+    #SUBTABS FOR PAYLOADS
+        
+        xssPanel = JPanel()
+        sqlPanel = JPanel()
+        tabPane2.addTab("XSS", xssPanel)
+        tabPane2.addTab("SQLI", sqlPanel)
+        
+        
+    #SUBTAB XSS
+        
+        xssArea = JTextArea(60, 60)
+        xssPayloads = urllib2.urlopen("https://raw.githubusercontent.com/beb-commits/Project-Files/main/xss-payloads.txt")
+        xssArea.append(xssPayloads.read())
+        xssPanel.setLayout(BorderLayout())
+        xssscrollPane = JScrollPane(xssArea)
+        xssPanel.add(xssscrollPane, BorderLayout.NORTH)
+      # xssPanel.add(bxssPanel, BorderLayout.SOUTH)
+        
+        
+    #SUBTAB SQLI
+        
+        sqlArea = JTextArea(60, 60)
+        sqlPayloads = urllib2.urlopen("https://raw.githubusercontent.com/beb-commits/Project-Files/main/sqli-payloads.txt")
+        sqlArea.append(sqlPayloads.read())
+        sqlPanel.setLayout(BorderLayout())
+        sqlscrollPane = JScrollPane(sqlArea)
+        sqlPanel.add(sqlscrollPane, BorderLayout.NORTH)
+      # sqlPanel.add(bsqlPanel, BorderLayout.SOUTH)
+        
+        
    #SECOND TAB
           
         textArea2 = JTextArea(60, 60)
-        textArea2.append("This is another test \nThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another testThis is another test\nThis is another test\nThis is another test\nThis is another test")
+        
+        textArea2.append(x.read())
         textPanel2 = JPanel()
         textPanel2.setLayout(BorderLayout()) 
         scrollPane2 = JScrollPane(textArea2)
         textPanel2.add(scrollPane2, BorderLayout.NORTH)
-        textPanel2.add(bPanel2, BorderLayout.SOUTH)
-        tabPane.addTab("SQL", textPanel2)
+      # textPanel2.add(bPanel2, BorderLayout.SOUTH)
+        tabPane.addTab("Usernames", textPanel2)
         
     #THIRD TAB
         
         textArea3 = JTextArea(60, 60)
-        textArea3.append("This is another test" \n "This is another test")
+        textArea3.append(y.read())
         textPanel3 = JPanel()
         textPanel3.setLayout(BorderLayout()) 
         scrollPane3 = JScrollPane(textArea3)
         textPanel3.add(scrollPane3, BorderLayout.NORTH)
-        textPanel3.add(bPanel3, BorderLayout.SOUTH)
-        tabPane.addTab("Another", textPanel3)
+      # textPanel3.add(bPanel3, BorderLayout.SOUTH)
+        tabPane.addTab("Passwords", textPanel3)
         
-    #FOURTH TAB
-        
-        textArea4 = JTextArea(60, 60)
-        textArea4.append("This is another test" \n "This is another test")
-        textPanel4 = JPanel()
-        textPanel4.setLayout(BorderLayout()) 
-        scrollPane4 = JScrollPane(textArea4)
-        textPanel4.add(scrollPane4, BorderLayout.NORTH)
-        textPanel4.add(bPanel4, BorderLayout.SOUTH)
-        tabPane.addTab("MORE PAYLOADS", textPanel4)
         
 
         #TEXT AREA SETTINGS
-        textArea.setLineWrap(True)
         textArea2.setLineWrap(True)
         textArea3.setLineWrap(True)
-        textArea4.setLineWrap(True)
-        textArea.setEditable(False)
         textArea2.setEditable(False)
         textArea3.setEditable(False)
-        textArea4.setEditable(False)
+
    
 
         frame.add(tabPane)
@@ -121,3 +196,7 @@ class BurpExtender(IBurpExtender, ITab, IMessageEditorController):
         #frame.add(textArea)
         #frame.add(textAreaTwo)
         frame.setVisible(True)
+    
+        
+        return 
+        
